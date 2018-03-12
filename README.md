@@ -11,6 +11,7 @@ To get the script, you can host it directly from the repository:
 <script src="https://github.com/OrigamiYoda729/library.js/raw/slim/library.js"></script>
 ```
  Or, download it from [here](https://raw.githubusercontent.com/origamiyoda729/library.js/master/slim/library.js).
+<br />
 
 ### Command Basics:
 Commands are what allow you to add and remove libraries from your script. All commands will begin with `library.` and end with either `get	` or `remove`. In the Slim version, you will have access to three main command branches:
@@ -62,4 +63,3 @@ The `.local` command is used to load local files. To access the file, you need t
 library.local.get('path_to/jquery.min.js')
 ```
 As with all of the other command branches, the `.get` and `.remove` commands apply here.
-<br />
