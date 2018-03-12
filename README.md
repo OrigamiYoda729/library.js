@@ -1,2 +1,4 @@
 # library.js
-A simple system for loading CSS and JS libraries
+Load CSS and JavaScript libraries straight from the console.
+
+## Setup
