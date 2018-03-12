@@ -17,6 +17,7 @@ Commands are what allow you to add and remove libraries from your script. All co
 - library.cdn
 - library.github
 - library.local
+<br />
 
 ### Command Branch: `library.cdn`
 The  `library.cdn` command allows you to add scripts from a cdn. In slim, there are only a few availiable libraries:
@@ -32,10 +33,10 @@ The  `library.cdn` command allows you to add scripts from a cdn. In slim, there 
 - Ionicons (`library.cdn.get('ionicons)`)
 
 Each command has both a `.get` and a `.remove` modifier. Put the library that you want to modify in parentheses and quotes to activate it.
+<br />
 
 ### Command Branch: `library.github`
 The `library.github` command branch has 2 different sub-branches: `.repo` and `.gist`. Both of these have the usual modifiers (`.get` and `.remove`), and they are both very powerful.
-<br />
 
 #### Command Sub-Branch: `.repo`
 The `.repo` command sub-branch should always be formatted as such: 
@@ -61,3 +62,4 @@ The `.local` command is used to load local files. To access the file, you need t
 library.local.get('path_to/jquery.min.js')
 ```
 As with all of the other command branches, the `.get` and `.remove` commands apply here.
+<br />
