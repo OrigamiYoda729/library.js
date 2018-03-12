@@ -5,6 +5,7 @@ A simple script for loading CSS, JavaScript, and other script files straight fro
 ## Slim Build
 The slim build is the simpler version of library.js, and allows for just the basics of library.js, and doesn't support any external plugins being added.
 <br />
+<br />
 
 ### Setup
 To get the script, you can host it directly from the repository:
@@ -12,6 +13,7 @@ To get the script, you can host it directly from the repository:
 <script src="https://github.com/OrigamiYoda729/library.js/raw/slim/library.js"></script>
 ```
  Or, download it from [here](https://raw.githubusercontent.com/origamiyoda729/library.js/master/slim/library.js).
+<br />
 <br />
 
 ### Command Basics:
@@ -35,6 +37,7 @@ The  `library.cdn` command allows you to add scripts from a cdn. In slim, there 
 - Ionicons (`library.cdn.get('ionicons)`)
 
 Each command has both a `.get` and a `.remove` modifier. Put the library that you want to modify in parentheses and quotes to activate it.
+<br />
 <br />
 
 ### Command Branch: `library.github`
