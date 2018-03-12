@@ -4,7 +4,8 @@ A simple script for loading CSS, JavaScript, and other script files straight fro
 
 ## Slim Build
 The slim build is the simpler version of library.js, and allows for just the basics of library.js, and doesn't support any external plugins being added.
-  
+<br />
+
 ### Setup
 To get the script, you can host it directly from the repository:
 ```html
@@ -14,7 +15,7 @@ To get the script, you can host it directly from the repository:
 <br />
 
 ### Command Basics:
-Commands are what allow you to add and remove libraries from your script. All commands will begin with `library.` and end with either `get	` or `remove`. In the Slim version, you will have access to three main command branches:
+Commands are what allow you to add and remove libraries from your script. All commands will begin with `library` and end with either `get` or `remove`. In the Slim version, you will have access to three main command branches:
 - library.cdn
 - library.github
 - library.local
