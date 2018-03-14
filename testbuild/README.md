@@ -131,10 +131,22 @@ library.github.gist.get('https://gist.github.com/your_gist.git')
 <br />
 
 ### Command Branch: `.local`
-The `.local` command is used to load local files. To access the file, you need the path to it, relative to the page you are loading library.js from. For example, to load jQuery locally, you would type:
+The `.local` command is used to load local files. To access the file, you need the path to it, relative to the page you are loading library.js from. For example, to load EasyJS locally, you would type:
 ```javascript
-library.local.get('path_to/jquery.min.js')
+library.local.get('path_to/easyjs.js')
 ```
+In the full build, you can also load pre-installed libraries:
+- jQuery (`library.local.pre.get('jquery')`)
+- jQuery Slim (`library.local.pre.get('jquery-slim')`)
+- Require JS (`library.local.pre.get('require-js')`)
+- Popper JS (`library.local.pre.get('popper-js')`)
+- Bootstrap CSS (`library.local.pre.get('bootstrap-css')`)
+- Bootstrap JS (`library.local.pre.get('boostrap-js')`)
+- Bootstrap Bundle (`library.local.pre.get('boostrap-bundle')`)
+- Bootswatch (`library.local.pre.get('bootswatch-{yourBootswatchTheme})`)
+- Font Awesome (`library.local.pre.get('font-awesome')`)
+- Ionicons (`library.local.pre.get('ionicons)`)
+
 As with all of the other command branches, the `.get` and `.remove` commands apply here.
 <br />
 <br />

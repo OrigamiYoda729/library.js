@@ -1,4 +1,4 @@
-myCDN = {
+cdn = '[{
 	url: "{url_of_cdn_file}",
 	filetype: "{type_of_file}"
-}
+}]';
