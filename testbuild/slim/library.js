@@ -1,3 +1,15 @@
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+}
+
 library = {
     cdn: {
 		get: function(cplugin) {
@@ -208,8 +220,7 @@ library = {
 				var rcur_stylesheet = document.getElementsByTagName("link");
 				for (i = 0; i < rcur_stylesheet.length; i++) {
 					if (rcur_stylesheet[i].href == rsource) {
-						document.getElementsByTagName("link")[i].removeAttribute("href");
-						document.getElementsByTagName("link")[i].removeAttribute("rel");
+						document.getElementsByTagName("link")[i].remove();
 					}
 				}
 			} else			
@@ -217,15 +228,14 @@ library = {
 				var rcur_script = document.getElementsByTagName("script");
 				for (i = 0; i < rcur_script.length; i++) {
 					if (rcur_script[i].src == rsource) {
-						document.getElementsByTagName("script")[i].removeAttribute("src");
+						document.getElementsByTagName("script")[i].remove();
 					}
 				}
 			} else {
 				var rcur_cscript = document.getElementsByTagName("script");
 				for (i = 0; i < rcur_cscript.length; i++) {
 					if (rcur_cscript[i].src == rsource) {
-						document.getElementsByTagName("script")[i].removeAttribute("src");
-						document.getElementsByTagName("script")[i].removeAttribute("type");
+						document.getElementsByTagName("script")[i].remove();
 					}
 				}
 			}
