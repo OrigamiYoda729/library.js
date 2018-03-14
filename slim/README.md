@@ -19,6 +19,7 @@ Commands are what allow you to add and remove libraries from your script. All co
 - library.github
 - library.local
 <br />
+<br />
 
 ## Command Branch: `library.cdn`
 The  `library.cdn` command allows you to add scripts from a cdn. In slim, there are only a few availiable libraries:
@@ -56,6 +57,7 @@ The `.gist` command sub-branch can be used to access a gist. To get a file, you 
 ```javascript
 library.github.gist.get('https://gist.github.com/your_gist.git')
 ```
+<br />
 <br />
 
 ## Command Branch: `.local`
