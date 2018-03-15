@@ -1,22 +1,27 @@
-# Library JS: Slim Build
+# Library JS: Full Build
 The slim build is the simpler version of library.js, and allows for just the basics of library.js, and doesn't support any external plugins being added.
 <br />
 <br />
 
 ## Setup
-To get the script, you can host it directly from the repository:
-```html
-<script src="https://github.com/OrigamiYoda729/library.js/raw/slim/library.min.js"></script>
+To get the full script, use git to clone the full repository:
 ```
-Or, download it [here](https://raw.githubusercontent.com/origamiyoda729/library.js/master/slim/library.min.js).
+git clone https://github.com/OrigamiYoda729/library.js.git master
+```
+Then, load the script into your document:
+```html
+<script src="your_library_js_folder/full/library.min.js"></script>
+```
+Or, download the zip file [from github](https://github.com/OrigamiYoda729/library.js/archive/master.zip).
 <br />
 <br />
 
 ## The Basics:
-Commands are what allow you to add and remove libraries from your script. All commands will begin with `library` and end with either `get` or `remove`. In the Slim version, you will have access to three main command branches:
+Commands are what allow you to add and remove libraries from your script. All commands will begin with `library` and end with either `get` or `remove`. In the Full version, you will have access to four main command branches:
 - [library.cdn](#command-branch-librarycdn)
 - [library.github](#command-branch-librarygithub)
 - [library.local](#command-branch-librarylocal)
+- [library.debug](#command-branch-librarydebug)
 <br />
 <br />
 
@@ -67,3 +72,79 @@ The `.local` command branch is used to load local files. To access the file, you
 library.local.get('path_to/your_script.js')
 ```
 As with all of the other command branches, the `.get` and `.remove` commands apply here.
+<br />
+<br />
+
+## Command Branch: `.debug`
+The `.debug` command branch allows you to write and remove any files you would like to from the document.
+<br />
+
+### Command Sub-Branch: `.write`
+The `.write` sub-branch allows you to directly add scripts and styles into the document. For example, typing:
+```javascript
+library.debug.write('assets/js/myscript.js')
+```
+Would add this to the HTML:
+```html
+<script src="assets/js/myscript.js"></script>
+```
+And, if you were to type:
+```javascript
+library.debug.write('assets/css/main.css')
+```
+This would be added to the HTML:
+```html
+<link rel="stylesheet" href="assets/css/main.css" />
+```
+<br />
+
+### Command Sub-Branch: `.remove`
+The `.remove` sub-branch allows you remove any files linked (via `<script` or `<link>`) to a document. For example, if you had the following webpage:
+```html
+<!doctype html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    
+	    <title>My Webpage!</title>
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+	</head>
+	<body>
+		<h1>Hello, World!</h1>
+		<p>This is a test webpage, written in HTML</p>
+		
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/useless.js"></script>
+	</body>
+</html>
+```
+After typing the following...
+```javascript
+library.debug.remove('assets/css/custom.css')
+library.debug.remove('assets/js/jquery.scrolly.min.js');
+library.debug.remove('assets/js/useless.js');
+```
+You would be left with:
+```html
+<!doctype html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    
+	    <title>My Webpage!</title>
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+		<h1>Hello, World!</h1>
+		<p>This is a test webpage, written in HTML</p>
+		
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
+```

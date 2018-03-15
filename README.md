@@ -4,5 +4,5 @@ An open-source project built for loading CSS, JavaScript, and other script files
 
 ### Documentation:
  - [Demo Website](https://origamiyoda729.github.io/library.js/) 
- - [Slim Version Instructions](https://github.com/origamiyoda729/library.js/tree/master/slim)
- - [Full Version Instuctions](https://github.com/origamiyoda729/library.js/tree/master/full)
+ - [Slim Build Instructions](https://github.com/origamiyoda729/library.js/tree/master/slim#library-js-slim-build)
+ - [Full Build Instuctions](https://github.com/origamiyoda729/library.js/tree/master/full#library-js-full-build)
