@@ -6,7 +6,7 @@ The slim build is the simpler version of library.js, and allows for just the bas
 ## Setup
 To get the script, you can host it directly from the repository:
 ```html
-<script src="https://github.com/OrigamiYoda729/library.js/raw/slim/library.min.js"></script>
+<script src="https://github.com/OrigamiYoda729/library.js/raw/slim/library.slim.min.js"></script>
 ```
 Or, download it [here](https://raw.githubusercontent.com/origamiyoda729/library.js/master/slim/library.min.js).
 <br />
