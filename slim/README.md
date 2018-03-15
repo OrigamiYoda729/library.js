@@ -8,7 +8,7 @@ To get the script, you can host it directly from the repository:
 ```html
 <script src="https://github.com/OrigamiYoda729/library.js/raw/slim/library.slim.min.js"></script>
 ```
-Or, download it [here](https://raw.githubusercontent.com/origamiyoda729/library.js/master/slim/library.min.js).
+Or, download it [here](https://raw.githubusercontent.com/origamiyoda729/library.js/master/slim/library.slim.min.js).
 <br />
 <br />
 
