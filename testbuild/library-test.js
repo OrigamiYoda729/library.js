@@ -1,9 +1,9 @@
 	
-	Element.prototype.remove = function() {
+	Element.prototype.proto_remove = function() {
 		this.parentElement.removeChild(this);
 	};
 
-	NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+	NodeList.prototype.proto_remove = HTMLCollection.prototype.remove = function() {
 		for (i = this.length - 1; i >= 0; i -= 1) {
 			if (this[i] && this[i].parentElement) {
 				this[i].parentElement.removeChild(this[i])
@@ -13,13 +13,17 @@
 	
 	var lib = {
 		dbg: {
-			getJSON: function(url, onSuccess) {
+			getJSON: function(url, onSuccess, get_remove_selector) {
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.open('GET', url, true);
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4) {
 						if (xmlhttp.status == 200) {
-							onSuccess(JSON.parse(xmlhttp.responseText));
+							if (get_remove_selector) {
+								onSuccess(JSON.parse(xmlhttp.responseText), get_remove_selector);
+							} else {
+								onSuccess(JSON.parse(xmlhttp.responseText));								
+							}
 						}
 					}
 				};
@@ -30,14 +34,17 @@
 					var ne = document.createElement("link");
 					ne.rel = "stylesheet";
 					ne.href = param1;
+					document.head.appendChild(ne);
 				} else 
 				if (!param2) {
 					var ne = document.createElement("script");
 					ne.src = param1;
+					document.body.appendChild(ne);
 				} else {
 					var ne = document.createElement("script");
 					ne.src = param1;
-					ne.type = param2;					
+					ne.type = param2;	
+					document.body.appendChild(ne);				
 				}
 			},
 			elementId: function(id, type, param1, param2) {
@@ -46,16 +53,19 @@
 					ne.id = id;
 					ne.rel = "stylesheet";
 					ne.href = param1;
+					document.head.appendChild(ne);
 				} else 
 				if (!param2) {
 					var ne = document.createElement("script");
 					ne.id = id;
 					ne.src = param1;
+					document.body.appendChild(ne);
 				} else {
 					var ne = document.createElement("script");
 					ne.id = id;
 					ne.src = param1;
-					ne.type = param2;					
+					ne.type = param2;			
+					document.body.appendChild(ne);		
 				}				
 			}
 		}
@@ -126,7 +136,8 @@
 							var j = i + 1;
 							if (j != z.length) {
 								if (z[i] != "id") {
-								document.getElementById(b).setAttribute(z[i], prop[z[i]]);
+									alert(b);
+									document.getElementById(b).setAttribute(z[i], prop[z[i]]);
 								}
 							} else {
 								document.getElementById(b).setAttribute(z[i], prop[z[i]]);
@@ -183,6 +194,46 @@
 				}
 			}
 		},
+		get: function(selector) {
+			if (this.e != "select-all" && this.e != "select-css" && this.e != "select-js" && this.e != "select-scripts") {
+				if (!selector) {
+					selector = "latest";
+				}	
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.open('GET', this.e, true);
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4) {
+						if (xmlhttp.status == 200) {
+							alert("asdf")
+							var cdn = JSON.parse(xmlhttp.responseText);
+							var x;
+							var y;
+							var z;
+							var a;
+							var b;
+							x = cdn.results[0].latest;
+							y = x.split(".")[x.split(".").length - 1];
+							z = selector.split("[")[0];
+							if (y.toLowerCase() == "css") {
+								if (selector.search("[") != -1) {
+									a = document.getElementsByTagName("link")[z];
+									console.log(a);
+								} else {
+									a = document.getElementsByTagName("link");
+									console.log(a);
+								}
+							} else
+							if (y.toLowerCase() == "js") {
+								lib.dbg.element("script", x);
+							} else {
+								lib.dbg.element("script", x, "text/" + y);
+							}
+						}
+					}
+				};
+				xmlhttp.send(null);		
+			}
+		}
 		
 	};
 
@@ -192,9 +243,9 @@
 	var $scripts = "nocdn:select-scripts";
 	var $local = "nocdn:create-local";
 	var $url = "nocdn:create-url";
-
-	_("jquery").add("", {
-		'data-test': 'test',
-		'data-tag': 'jquery'
+	
+	_("bootswatch").add("", {
+		"data-id": "bootswatch"
 	});
-	_($local).add("assets/js/main.js");
+	
+	_("bootswatch").get();
