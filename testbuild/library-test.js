@@ -194,46 +194,40 @@
 				}
 			}
 		},
-		get: function(selector) {
-			if (this.e != "select-all" && this.e != "select-css" && this.e != "select-js" && this.e != "select-scripts") {
-				if (!selector) {
-					selector = "latest";
-				}	
-				var xmlhttp = new XMLHttpRequest();
-				var url = "https://api.cdnjs.com/libraries?search=" + this.e;
-				xmlhttp.open('GET', url, true);
-				xmlhttp.onreadystatechange = function() {
-					if (xmlhttp.readyState == 4) {
-						if (xmlhttp.status == 200) {
-							var cdn = JSON.parse(xmlhttp.responseText);
-							var x;
-							var y;
-							var z;
-							var a;
-							var b;
-							x = cdn.results[0].latest;
-							y = x.split(".")[x.split(".").length - 1];
-							z = selector.split("[")[0];
-							b = selector.search(/\[/);
-							if (y.toLowerCase() == "css") {
-								if (b != -1) {
-									return slice.call(document.getElementsByTagName("link")[z]);
+		get: function(func) {
+			if (func) {
+				if (this.e != "select-all" && this.e != "select-css" && this.e != "select-js" && this.e != "select-scripts") {
+					var xmlhttp = new XMLHttpRequest();
+					var url = "https://api.cdnjs.com/libraries?search=" + this.e;
+					xmlhttp.open('GET', url, true);
+					xmlhttp.onreadystatechange = function() {
+						if (xmlhttp.readyState == 4) {
+							if (xmlhttp.status == 200) {
+								var cdn = JSON.parse(xmlhttp.responseText);
+								var x;
+								var y;
+								var z;
+								var a;
+								var b;
+								x = cdn.results[0].latest;
+								y = x.split(".")[x.split(".").length - 1];
+								if (y.toLowerCase() == "css") {
+									func(document.getElementsByTagName("link"));
+								} else
+								if (y.toLowerCase() == "js") {
+									lib.dbg.element("script", x);
 								} else {
-									return slice.call(document.getElementsByTagName("link"));
+									lib.dbg.element("script", x, "text/" + y);
 								}
-							} else
-							if (y.toLowerCase() == "js") {
-								lib.dbg.element("script", x);
-							} else {
-								lib.dbg.element("script", x, "text/" + y);
 							}
 						}
 					}
+					xmlhttp.send(null);		
 				}
-				xmlhttp.send(null);		
+			} else {
+				console.log("Please include a function: _('" + this.e + "').get('function(myElement){ myElement.setAttribute('data-test', 'true') });");
 			}
 		}
-		
 	};
 
 	var $all = "nocdn:select-all";
