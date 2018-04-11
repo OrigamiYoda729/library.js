@@ -26,7 +26,7 @@
 							}
 						}
 					}
-				};
+				}
 				xmlhttp.send(null);				
 			},
 			element: function(type, param1, param2) {
@@ -200,11 +200,11 @@
 					selector = "latest";
 				}	
 				var xmlhttp = new XMLHttpRequest();
-				xmlhttp.open('GET', this.e, true);
+				var url = "https://api.cdnjs.com/libraries?search=" + this.e;
+				xmlhttp.open('GET', url, true);
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4) {
 						if (xmlhttp.status == 200) {
-							alert("asdf")
 							var cdn = JSON.parse(xmlhttp.responseText);
 							var x;
 							var y;
@@ -214,13 +214,12 @@
 							x = cdn.results[0].latest;
 							y = x.split(".")[x.split(".").length - 1];
 							z = selector.split("[")[0];
+							b = selector.search(/\[/);
 							if (y.toLowerCase() == "css") {
-								if (selector.search("[") != -1) {
-									a = document.getElementsByTagName("link")[z];
-									console.log(a);
+								if (b != -1) {
+									return slice.call(document.getElementsByTagName("link")[z]);
 								} else {
-									a = document.getElementsByTagName("link");
-									console.log(a);
+									return slice.call(document.getElementsByTagName("link"));
 								}
 							} else
 							if (y.toLowerCase() == "js") {
@@ -230,7 +229,7 @@
 							}
 						}
 					}
-				};
+				}
 				xmlhttp.send(null);		
 			}
 		}
@@ -244,8 +243,4 @@
 	var $local = "nocdn:create-local";
 	var $url = "nocdn:create-url";
 	
-	_("bootswatch").add("", {
-		"data-id": "bootswatch"
-	});
-	
-	_("bootswatch").get();
+	_("bootswatch").add();
